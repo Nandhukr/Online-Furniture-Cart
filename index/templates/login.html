@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Logo -->
+                <a class="nav-brand" href="#"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a>
+                                
+                            </li>
+                            <li><a href="{% url 'orders' %}">Orders</a>
+                                
+                            </li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Log-out</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
+             <!-- Header Meta Data -->
+             <div class="header-meta d-flex clearfix justify-content-end">
+                <!-- Search Area -->
+                <div class="search-area">
+                    <form action="#" method="post">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+               
+                <!-- Cart Area -->
+                <div class="cart-area">
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <br><br><br>
+    <form class="container">
+        <div class="form-group col-6 ">
+          <label for="exampleInputEmail1">Email address</label>
+          <input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group col-6">
+          <label for="exampleInputPassword1">Password</label>
+          <input name='password' type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+       
+        <button type="submit" class="btn btn-primary ml-3">Submit</button><br>
+        <a style="color:black;" href="{% url 'register' %}"> You don't have an account ,sign-up here</a><br>
+ <a style="color:black;" href="{% url 'admin:index' %}">admin</a>
+      </form>
+    
+</body>
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Classy Nav js -->
+    <script src="{% static 'js/classy-nav.min.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+    <script src="{% static 'bootstrap.js' %}"></script>
+</html>

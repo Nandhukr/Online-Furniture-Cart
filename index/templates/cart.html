@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Essence - Fashion Ecommerce Template</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Logo -->
+                <a class="nav-brand" href="#"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a>
+                                
+                            </li>
+                            <li><a href="{% url 'orders' %}">Orders</a>
+                                
+                            </li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Log-out</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
+             <!-- Header Meta Data -->
+             <div class="header-meta d-flex clearfix justify-content-end">
+                <!-- Search Area -->
+                <div class="search-area">
+                    <form action="#" method="post">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+               
+                <!-- Cart Area -->
+                <div class="cart-area">
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+   <section class="h-100" style="background-color: #eee;">
+        <div class="container h-100 py-5">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-10">
+      
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+                <div>
+                 
+                
+                </div>
+              </div>
+      
+           {% for x in cart %}
+               
+              <div class="card rounded-3 mb-4">
+                <div class="card-body p-4">
+                  <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <img src="{{x.product.photo1.url}}"
+                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <p class="lead fw-normal mb-2">{{x.product.name}}</p>
+                    
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h5 class="mb-0">${{x.product.price}}</h5>
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                      <a href="{% url 'delete' x.id %}" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>{% endfor %}
+      
+              
+              <div class="card mb-4">
+                <div class="card-body p-4 d-flex flex-row">
+                  <div class="form-outline flex-fill">
+                    
+                  </div>
+                <h2>Total=${{total}}</h2>
+                </div>
+              </div>
+      <form action="" method='post'>
+        {% csrf_token %}
+          <h2>CHECKOUT</h2>
+          <input type="text" class="form-control-lg col-12" name='name' placeholder="name"><br><br>
+          <input type="text" class="form-control-lg col-12" name='mobile' placeholder="mobile_no"><br><br>
+          <input type="text" class="form-control-lg col-12" name='pincode' placeholder="pincode"><br><br>
+          <input type="text" class="form-control-lg col-12" name='house' placeholder="house"><br><br>
+          <input type="text" class="form-control-lg col-12" name='street' placeholder="street"><br><br>
+          <input type="text" class="form-control-lg col-12" name='landmark' placeholder="landmark"><br><br>
+          <input type="text" class="form-control-lg col-12" name='town' placeholder="town"><br><br>
+          <input type="text" class="form-control-lg col-12" name='state' placeholder="state"><br><br>
+              <div class="card">
+                <div class="card-body">
+<h4 class="d-flex justify-content-center">Total : {{total}}$</h4>
+                  <button type="submit" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+                </div>
+              </div>
+            </form>
+                    </div>
+                </div>
+               
+
+            </div>
+        </div>
+    </div>
+    <!-- ##### Checkout Area End ##### -->
+
+
+<br><br><br><br><br>
+   
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Classy Nav js -->
+    <script src="{% static 'js/classy-nav.min.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+</body>
+
+</html>
